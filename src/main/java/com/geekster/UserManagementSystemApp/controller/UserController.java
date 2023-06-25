@@ -43,17 +43,17 @@ public class UserController {
 
     }
     @PutMapping("updateUserInfo/{userId}")
-    public String updateUserInfo(@PathVariable Integer userId) {
+    public String updateUserInfo(@PathVariable Integer userId, @RequestBody User updateUser) {
         for (User info : userInfo) {
             if (info.getUserId().equals(userId)) {
-                info.setName(info.getName());
-                info.setUserName(info.getUserName());
-                info.setAddress(info.getAddress());
-                info.setPhoneNumber(info.getPhoneNumber());
-                return "User updated for UserId" + userId;
+                info.setName(updateUser.getName());
+                info.setUserName(updateUser.getUserName());
+                info.setAddress(updateUser.getAddress());
+                info.setPhoneNumber(updateUser.getPhoneNumber());
+                return "User updated for UserId " + userId;
             }
         }
-        return "User not found userId:" + userId;
+        return "User not found for userId: " + userId;
     }
     @DeleteMapping("deleteUser/{userId}")
     public String deleteUser(@PathVariable Integer userId){
